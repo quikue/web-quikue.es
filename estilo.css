@@ -1,0 +1,157 @@
+/* quikue.es — "El negativo" (dirección Jean Nouvel)
+   Negro absoluto, Helvetica, tipografía grande, fotos a sangre. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --blanco: #fff;
+  --gris-claro: #cfcfcf;
+  --gris: #9a9a9a;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #000;
+  color: var(--blanco);
+}
+
+a { color: var(--blanco); }
+
+/* ── Portada e index: secciones a pantalla completa ── */
+html.snap { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html.snap { scroll-snap-type: none; scroll-behavior: auto; }
+}
+
+section.pantalla {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+section.pantalla img.fondo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .55;
+}
+
+.marca {
+  position: relative; z-index: 2;
+  padding: 0 6vw;
+  font-size: clamp(44px, 9vw, 110px);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.02;
+}
+.marca small {
+  display: block;
+  font-size: clamp(14px, 1.8vw, 22px);
+  font-weight: 400; letter-spacing: .14em;
+  margin-top: 26px; text-transform: uppercase;
+  color: var(--gris-claro);
+}
+
+nav.menu {
+  position: fixed; right: 5vw; bottom: 6vh; z-index: 10;
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 34px); line-height: 1.35;
+}
+nav.menu a { text-decoration: none; display: block; }
+nav.menu a:hover { color: var(--gris); }
+
+.pie {
+  position: relative; z-index: 2;
+  padding: 0 6vw;
+  max-width: 900px;
+}
+.pie h2 { font-size: clamp(32px, 6vw, 72px); font-weight: 700; line-height: 1.05; }
+.pie p { margin-top: 22px; font-size: 17px; line-height: 1.6; color: #ddd; }
+.pie .ficha {
+  margin-top: 26px; font-size: 12px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gris);
+}
+.pie a.mas {
+  display: inline-block; margin-top: 22px;
+  font-size: 15px; letter-spacing: .06em;
+  border-bottom: 2px solid var(--blanco);
+  text-decoration: none; padding-bottom: 3px;
+}
+.pie a.mas:hover { color: var(--gris); border-color: var(--gris); }
+
+/* En móvil, que el menú fijo no tape los pies de sección */
+@media (max-width: 640px) {
+  .pie { padding-bottom: 22vh; }
+  nav.menu { font-size: 17px; }
+}
+
+/* ── Páginas interiores ── */
+header.volver {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 20px 5vw;
+  background: linear-gradient(#000c, #0000);
+  font-size: 15px;
+}
+header.volver a { text-decoration: none; font-weight: 700; letter-spacing: .02em; }
+header.volver a:hover { color: var(--gris); }
+header.volver .tag { color: var(--gris); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+
+.hero {
+  height: 72vh; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .6; }
+.hero h1 {
+  position: relative; z-index: 2;
+  padding: 0 5vw 7vh;
+  font-size: clamp(36px, 7vw, 84px);
+  font-weight: 700; line-height: 1.03; letter-spacing: -0.01em;
+}
+.hero h1 small {
+  display: block; font-size: clamp(13px, 1.6vw, 18px); font-weight: 400;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--gris-claro);
+  margin-top: 16px;
+}
+
+main.texto {
+  max-width: 860px;
+  padding: 60px 5vw 40px;
+}
+main.texto p { font-size: 17px; line-height: 1.65; color: #ddd; margin-top: 18px; }
+main.texto p:first-child { margin-top: 0; font-size: 19px; color: var(--blanco); }
+
+.seccion {
+  max-width: 860px;
+  padding: 26px 5vw;
+}
+.seccion h2 {
+  font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gris); border-top: 1px solid #2a2a2a; padding-top: 18px;
+}
+.seccion ul { list-style: none; margin-top: 14px; }
+.seccion li { font-size: 15.5px; line-height: 1.55; color: #ddd; padding: 7px 0; }
+.seccion li b, .seccion li strong { color: var(--blanco); font-weight: 700; }
+.seccion li i, .seccion li em { color: #eee; }
+.seccion p { font-size: 15.5px; line-height: 1.6; color: #ddd; margin-top: 14px; }
+
+.galeria {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; padding: 40px 5vw 30px;
+}
+@media (max-width: 640px) { .galeria { grid-template-columns: 1fr; } }
+.galeria figure { position: relative; }
+.galeria img { width: 100%; display: block; }
+.galeria figcaption {
+  font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gris); margin-top: 8px;
+}
+.galeria figure.ancha { grid-column: 1 / -1; }
+
+footer.pagina {
+  padding: 60px 5vw 70px;
+  display: flex; flex-wrap: wrap; gap: 10px 50px;
+  font-size: 13.5px; color: var(--gris);
+  border-top: 1px solid #1c1c1c; margin-top: 50px;
+}
+footer.pagina a { color: var(--gris-claro); }
